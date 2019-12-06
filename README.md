@@ -1,3 +1,3 @@
 # Database
 
-Own Project using JDBCSQLite and JavaFX
+Own project using JDBCSQLite and JavaFX
