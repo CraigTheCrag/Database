@@ -1,10 +1,13 @@
 package querybuilders;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class AbstractBuilder {
 	
 	private String tablename;
+	
+	private ArrayList<String> tablenames;
 	
 	private String statement;
 	
@@ -14,6 +17,10 @@ public abstract class AbstractBuilder {
 	 */
 	public AbstractBuilder(String tablename) {
 		this.tablename = tablename;
+	}
+	
+	public AbstractBuilder(String tablename1, String tablename2) {
+		this.tablenames = new ArrayList<String>(Arrays.asList(tablename1,tablename2));
 	}
 
 	/**
@@ -62,4 +69,7 @@ public abstract class AbstractBuilder {
 		return this.statement;
 	}
 	
+	protected ArrayList<String> getTablenames() {
+		return tablenames;
+	}
 }

@@ -1,7 +1,8 @@
 package querybuilders;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
+
+import exceptions.SQLLengthException;
 
 public class UpdateBuilder extends AbstractBuilder {
 	
@@ -10,12 +11,12 @@ public class UpdateBuilder extends AbstractBuilder {
 	private ArrayList<String> conditions;
 
 	public UpdateBuilder(String tablename, ArrayList<String> columns,
-			ArrayList<String> values, ArrayList<String> conditions) throws SQLException {
+			ArrayList<String> values, ArrayList<String> conditions) throws SQLLengthException {
 		
 		super(tablename);
 		
 		if (columns.size() != values.size()) {
-			throw new SQLException("Number of columns and values not equal");
+			throw new SQLLengthException();
 		}
 		
 		this.columns = columns;
@@ -48,7 +49,7 @@ public class UpdateBuilder extends AbstractBuilder {
 			}
 		}
 		
-		statement += ");";
+		statement += ";";
 		
 		this.setStatement(statement);
 		

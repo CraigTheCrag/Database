@@ -45,7 +45,7 @@ public class SelectBuilder extends AbstractBuilder {
 				}
 			}
 			
-			statement += ");";
+			statement += ";";
 		}
 		
 		this.setStatement(statement);

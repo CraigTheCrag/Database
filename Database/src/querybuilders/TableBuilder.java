@@ -2,6 +2,8 @@ package querybuilders;
 
 import java.util.ArrayList;
 
+import exceptions.SQLLengthException;
+
 public class TableBuilder extends AbstractBuilder {
 	
 	ArrayList<String> columns;
@@ -20,13 +22,17 @@ public class TableBuilder extends AbstractBuilder {
 	 * @param nulls
 	 */
 	public TableBuilder(String tablename, ArrayList<String> columns,
-			ArrayList<String> types, ArrayList<Boolean> nulls) {
+			ArrayList<String> types, ArrayList<Boolean> nulls) throws SQLLengthException {
 		
 		super(tablename);
 		
-		this.columns = columns;
-		this.types = types;
-		this.nulls = nulls;
+		if (columns.size() == types.size() && types.size() == nulls.size()) {
+			this.columns = columns;
+			this.types = types;
+			this.nulls = nulls;
+		} else {
+			throw new SQLLengthException();
+		}
 		
 		this.build();
 	}
