@@ -12,7 +12,7 @@ public abstract class AbstractBuilder {
 	 * Constructor for abstract SQL statement builder
 	 * @param tablename
 	 */
-	protected AbstractBuilder(String tablename) {
+	public AbstractBuilder(String tablename) {
 		this.tablename = tablename;
 	}
 
