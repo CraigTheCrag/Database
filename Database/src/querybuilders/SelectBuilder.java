@@ -32,7 +32,7 @@ public class SelectBuilder extends AbstractBuilder {
 	
 	@Override
 	protected void build() {
-		String statement = "SELECT " + this.columns + " FROM " + this.getStatement();
+		String statement = "SELECT " + this.columns + " FROM " + this.getTablename();
 		
 		if (this.conditions.size() != 0) {
 			statement += " WHERE ";
