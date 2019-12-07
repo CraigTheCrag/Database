@@ -143,16 +143,16 @@ public class DatabaseGUI extends Application {
 		System.out.println("Database Connection Opened!");
 		
 		String tablename = "EMPLOYEE";
-		ArrayList<String> columns = new ArrayList<String>(Arrays.asList("ID", "NAME", "AGE", "ADDRESS", "SALARY"));
+		/*ArrayList<String> columns = new ArrayList<String>(Arrays.asList("ID", "NAME", "AGE", "ADDRESS", "SALARY"));
 		ArrayList<String> types = new ArrayList<String>(Arrays.asList("INT", "TEXT", "INT", "CHAR(50)", "REAL"));
 		ArrayList<Boolean> nulls = new ArrayList<Boolean>(Arrays.asList(false, false, false, true, false));
 		
-		//ArrayList<String> values = new ArrayList<String>(Arrays.asList("0", "'Craig'", "19", "'22 The Russetts'", "200000.00"));
+		ArrayList<String> values = new ArrayList<String>(Arrays.asList("0", "'Craig'", "19", "'22 The Russetts'", "200000.00"));
 		
-		/*try {
-			//c = DatabaseFunctions.createTable(c, tablename, columns, types, nulls);
-			//c = DatabaseFunctions.insertRecord(c, tablename, values);
-			//c = DatabaseFunctions.selectRecords(c, tablename, new ArrayList<String>(), new ArrayList<String>());
+		try {
+			c = DatabaseFunctions.createTable(c, tablename, columns, types, nulls);
+			c = DatabaseFunctions.insertRecord(c, tablename, values);
+			c = DatabaseFunctions.selectRecords(c, tablename, new ArrayList<String>(), new ArrayList<String>());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}*/
