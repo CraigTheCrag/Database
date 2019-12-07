@@ -115,8 +115,8 @@ public class DatabaseGUI extends Application {
 	private void createTable() {
 		this.table.setEditable(true);
 		
-		TableColumn<?, ?> idColumn = new TableColumn("ID");
-		TableColumn<?, ?> nameColumn = new TableColumn("Name");
+		TableColumn idColumn = new TableColumn("ID");
+		TableColumn nameColumn = new TableColumn("Name");
 		
 		this.table.getColumns().addAll(idColumn, nameColumn);
 		
