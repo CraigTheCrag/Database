@@ -147,7 +147,7 @@ public class DatabaseGUI extends Application {
 		ArrayList<String> types = new ArrayList<String>(Arrays.asList("INT", "TEXT", "INT", "CHAR(50)", "REAL"));
 		ArrayList<Boolean> nulls = new ArrayList<Boolean>(Arrays.asList(false, false, false, true, false));
 		
-		ArrayList<String> values = new ArrayList<String>(Arrays.asList("0", "'Craig'", "19", "'22 The Russetts'", "200000.00"));
+		//ArrayList<String> values = new ArrayList<String>(Arrays.asList("0", "'Craig'", "19", "'22 The Russetts'", "200000.00"));
 		
 		/*try {
 			//c = DatabaseFunctions.createTable(c, tablename, columns, types, nulls);
