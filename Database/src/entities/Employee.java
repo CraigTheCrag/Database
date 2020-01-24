@@ -15,6 +15,21 @@ public class Employee{
 		this.address = new SimpleStringProperty(address);
 		this.salary = new SimpleStringProperty(salary);
 	}
+	
+	public Employee(String name, String age, String address) {
+		this.name = new SimpleStringProperty(name);
+		this.age = new SimpleStringProperty(age);
+		this.address = new SimpleStringProperty(address);
+	}
+	
+	public Employee(String name, String age) {
+		this.name = new SimpleStringProperty(name);
+		this.age = new SimpleStringProperty(age);
+	}
+	
+	public Employee(String name) {
+		this.name = new SimpleStringProperty(name);
+	}
 
 	public String getName() {
 		return this.name.get();
