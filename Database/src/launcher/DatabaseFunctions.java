@@ -1,18 +1,29 @@
 package launcher;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import datastructures.SelectReturn;
 import querybuilders.InsertBuilder;
 import querybuilders.SelectBuilder;
 import querybuilders.TableBuilder;
+import querybuilders.TableDestroyer;
 
 public class DatabaseFunctions {
+	
+	public static Connection dropTable(Connection c, String tablename) throws SQLException {
+		TableDestroyer td = new TableDestroyer(tablename);
+		
+		Statement sqlStatement = c.createStatement();
+		sqlStatement.executeUpdate(td.getStatement());
+		
+		return c;
+	}
 	
 	public static Connection createTable(Connection c, String tablename, 
 			ArrayList<String> columns, ArrayList<String> types, 
@@ -42,7 +53,7 @@ public class DatabaseFunctions {
 		
 	}
 	
-	public static Connection selectRecords(Connection c, String tablename,
+	public static SelectReturn selectRecords(Connection c, String tablename,
 			ArrayList<String> columns, ArrayList<String> conditions) throws SQLException {
 		
 		SelectBuilder sb = new SelectBuilder(tablename, columns, conditions);
@@ -53,25 +64,22 @@ public class DatabaseFunctions {
 		
 		ResultSet rs = sqlStatement.executeQuery(sb.getStatement());
 		
+		List<ArrayList<String>> values = new ArrayList<ArrayList<String>>();
+		
 		while (rs.next()) {
-			int id = rs.getInt("id");
+			//String id = Integer.toString(rs.getInt("id"));
 			String name = rs.getString("name");
-			int age = rs.getInt("age");
+			String age = Integer.toString(rs.getInt("age"));
 			String address = rs.getString("address");
-			float salary = rs.getFloat("salary");
+			String salary = Float.toString(rs.getFloat("salary"));
 			
-			System.out.println("ID = " + id);
-			System.out.println("NAME = " + name);
-			System.out.println("AGE = " + age);
-			System.out.println("ADDRESS = " + address);
-			System.out.println("SALARY = " + salary);
-			System.out.println();
+			values.add(new ArrayList<String>(Arrays.asList(name, age, address, salary)));
 		}
 		
 		rs.close();
 		sqlStatement.close();
 		
-		return c;
+		return new SelectReturn(c, values);
 		
 	}
 }

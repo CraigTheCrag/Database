@@ -6,8 +6,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import datastructures.SelectReturn;
+import entities.Employee;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -17,6 +22,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -111,16 +117,47 @@ public class DatabaseGUI extends Application {
 		stage.show();
 		
 	}
+	
+	private ObservableList<Employee> getDataList(List<ArrayList<String>> values) {
+		List<Employee> employees = new ArrayList<Employee>();
+		
+		for (int i=0;i<values.size();i++) {
+			employees.add(new Employee(values.get(i).get(0),
+					values.get(i).get(1),
+					values.get(i).get(2),
+					values.get(i).get(3)));
+		}
+		
+		return FXCollections.observableArrayList(employees);
+	}
 
 	private void createTable() {
 		this.table.setEditable(true);
 		
-		TableColumn idColumn = new TableColumn("ID");
-		TableColumn nameColumn = new TableColumn("Name");
-		
-		this.table.getColumns().addAll(idColumn, nameColumn);
-		
 		this.root.getChildren().add(this.table);
+	}
+	
+	private void addColumns(List<String> columns, List<ArrayList<String>> values) {
+		this.table.getColumns().clear();
+		
+		List<TableColumn> tableColumns = new ArrayList<TableColumn>();
+		List<String> names = new ArrayList<String>(
+				Arrays.asList("name", "age", "address", "salary"));
+		
+		for (String s : columns) {
+			tableColumns.add(new TableColumn(s));
+		}
+		
+		for (int i=0;i<tableColumns.size();i++) {
+			tableColumns.get(i).setCellValueFactory(
+					new PropertyValueFactory<Employee, String>(names.get(i)));
+		}
+		
+		ObservableList<Employee> data = this.getDataList(values);
+		
+		this.table.setItems(data);
+		
+		this.table.getColumns().addAll(tableColumns);
 	}
 	
 	private void createLabel() {
@@ -142,22 +179,33 @@ public class DatabaseGUI extends Application {
 		
 		System.out.println("Database Connection Opened!");
 		
-		String tablename = "EMPLOYEE";
-		/*ArrayList<String> columns = new ArrayList<String>(Arrays.asList("ID", "NAME", "AGE", "ADDRESS", "SALARY"));
-		ArrayList<String> types = new ArrayList<String>(Arrays.asList("INT", "TEXT", "INT", "CHAR(50)", "REAL"));
-		ArrayList<Boolean> nulls = new ArrayList<Boolean>(Arrays.asList(false, false, false, true, false));
+		String tablename = "Employee";
 		
-		ArrayList<String> values = new ArrayList<String>(Arrays.asList("0", "'Craig'", "19", "'22 The Russetts'", "200000.00"));
+		ArrayList<String> columns = new ArrayList<String>(Arrays.asList("NAME", "AGE", "ADDRESS", "SALARY"));
+		ArrayList<String> types = new ArrayList<String>(Arrays.asList("TEXT", "INT", "CHAR(50)", "REAL"));
+		ArrayList<Boolean> nulls = new ArrayList<Boolean>(Arrays.asList(false, false, true, false));
+		
+		ArrayList<String> values = new ArrayList<String>(Arrays.asList("'Craig'", "19", "'22 The Russetts'", "200000.00"));
+		
+		List<ArrayList<String>> records = new ArrayList<ArrayList<String>>();
 		
 		try {
+			//c = DatabaseFunctions.dropTable(c, tablename);
 			c = DatabaseFunctions.createTable(c, tablename, columns, types, nulls);
 			c = DatabaseFunctions.insertRecord(c, tablename, values);
-			c = DatabaseFunctions.selectRecords(c, tablename, new ArrayList<String>(), new ArrayList<String>());
+			SelectReturn returns = DatabaseFunctions.selectRecords(c, tablename, new ArrayList<String>(), new ArrayList<String>());
+			c = returns.getConnection();
+			records = returns.getValues();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
+		
+		this.addColumns(columns, records);
 		
 		System.out.println("Database Operations successful!");
+		
+		
 	}
 	
 }

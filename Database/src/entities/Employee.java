@@ -1,29 +1,26 @@
 package entities;
 
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Employee extends Entity {
+public class Employee{
 	
 	private SimpleStringProperty name;
-	private SimpleIntegerProperty age;
+	private SimpleStringProperty age;
 	private SimpleStringProperty address;
-	private SimpleFloatProperty salary;
+	private SimpleStringProperty salary;
 
-	public Employee(int id, String name, int age, String address, float salary) {
-		super(id);
+	public Employee(String name, String age, String address, String salary) {
 		this.name = new SimpleStringProperty(name);
-		this.age = new SimpleIntegerProperty(age);
+		this.age = new SimpleStringProperty(age);
 		this.address = new SimpleStringProperty(address);
-		this.salary = new SimpleFloatProperty(salary);
+		this.salary = new SimpleStringProperty(salary);
 	}
 
 	public String getName() {
 		return this.name.get();
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return this.age.get();
 	}
 
@@ -31,7 +28,7 @@ public class Employee extends Entity {
 		return this.address.get();
 	}
 
-	public float getSalary() {
+	public String getSalary() {
 		return this.salary.get();
 	}
 
