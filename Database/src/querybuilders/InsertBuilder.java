@@ -10,8 +10,8 @@ public class InsertBuilder extends AbstractBuilder {
 	
 	/**
 	 * Constructor for insert SQL statement
-	 * @param tablename
-	 * @param values
+	 * @param tablename - Name of table to insert values into
+	 * @param values - Values to insert into table
 	 */
 	public InsertBuilder(String tablename, ArrayList<String> values) {
 		

@@ -10,6 +10,14 @@ public class UpdateBuilder extends AbstractBuilder {
 	private ArrayList<String> values;
 	private ArrayList<String> conditions;
 
+	/**
+	* Constructor for creating UPDATE query for DB
+	* @param tablename - Name of table to update
+	* @param columns - Columns to update as <code>ArrayList</code> of <code>String</code> objects
+	* @param values - New values to use as <code>ArrayList</code> of <code>String</code> objects
+	* @param conditions - Conditions to filter records to update as <code>ArrayList</code> of <code>String</code> objects
+	* @throws SQLLengthException If tablename is invalid, length of values and columns lists are not equal or if condition(s) are invalid
+	**/
 	public UpdateBuilder(String tablename, ArrayList<String> columns,
 			ArrayList<String> values, ArrayList<String> conditions) throws SQLLengthException {
 		

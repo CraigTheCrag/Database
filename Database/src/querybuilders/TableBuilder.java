@@ -15,11 +15,11 @@ public class TableBuilder extends AbstractBuilder {
 	String typesString;
 
 	/**
-	 * Constructor for sql table builder
-	 * @param tablename
-	 * @param columns
-	 * @param types
-	 * @param nulls
+	 * Constructor for building SQL tables
+	 * @param tablename - Name of table to build
+	 * @param columns - Names of columns as <code>ArrayList</code> of <code>String</code> objects
+	 * @param types - Data types of each column as <code>ArrayList</code> of <code>String</code> objects
+	 * @param nulls - <code>ArrayList</code> of <code>Boolean</code> objects specifying whether a column can be null or not
 	 */
 	public TableBuilder(String tablename, ArrayList<String> columns,
 			ArrayList<String> types, ArrayList<Boolean> nulls) throws SQLLengthException {

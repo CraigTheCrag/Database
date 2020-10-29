@@ -57,6 +57,10 @@ public class DatabaseGUI extends Application {
 		launch(args);
 	}
 	
+	/**
+	* Sets GUI up with settings
+	* @param stage - <code>Stage</code> to use
+	**/
 	private void setupGUI(Stage stage) {
 		stage.setTitle("Database Manager");
 		this.root = new VBox();
@@ -118,6 +122,11 @@ public class DatabaseGUI extends Application {
 		
 	}
 	
+	/**
+	* Gets list of data from SELECT statement and converts to List of <code>Employee</code> objects
+	* @param values - values from SELECT statement
+	* @return <code>ObservableList</code> of <code>Employee</code> objects
+	**/
 	private ObservableList<Employee> getDataList(List<ArrayList<String>> values) {
 		List<Employee> employees = new ArrayList<Employee>();
 		
@@ -131,12 +140,20 @@ public class DatabaseGUI extends Application {
 		return FXCollections.observableArrayList(employees);
 	}
 
+	/**
+	* Creates empty table and adds to <code>VBox</code>
+	**/
 	private void createTable() {
 		this.table.setEditable(true);
 		
 		this.root.getChildren().add(this.table);
 	}
 	
+	/**
+	* Adds columns to table of VBox
+	* @param columns - <code>List</code> of <code>String</code> objects
+	* @param values - <code>List</code> of <code>ArrayList</code> of <code>String</code> objects to use as values
+	**/
 	private void addColumns(List<String> columns, List<ArrayList<String>> values) {
 		this.table.getColumns().clear();
 		
@@ -160,6 +177,9 @@ public class DatabaseGUI extends Application {
 		this.table.getColumns().addAll(tableColumns);
 	}
 	
+	/**
+	* Creates default label and adds to table
+	**/
 	private void createLabel() {
 		final Label label = new Label(TABLE_TITLE);
 		
@@ -168,6 +188,9 @@ public class DatabaseGUI extends Application {
 		this.root.getChildren().add(label);
 	}
 	
+	/**
+	* Tester method for performing operations
+	**/
 	private void performOperations() {
 		try {
 			Class.forName("org.sqlite.JDBC");

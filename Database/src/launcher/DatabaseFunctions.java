@@ -16,6 +16,13 @@ import querybuilders.TableDestroyer;
 
 public class DatabaseFunctions {
 	
+	/**
+	* Creates <code>TableDestroyer</code> object to drop specified table
+	* @param c - <code>Connection</code> to DB
+	* @param tablename - Name of table to DROP
+	* @return <code>Connection</code> to DB
+	* @throws SQLException If tablename is invalid
+	**/
 	public static Connection dropTable(Connection c, String tablename) throws SQLException {
 		TableDestroyer td = new TableDestroyer(tablename);
 		
@@ -25,6 +32,16 @@ public class DatabaseFunctions {
 		return c;
 	}
 	
+	/**
+	* Creates <code>TableBuilder</code> object to create new table
+	* @param c - <code>Connection</code> to DB
+	* @param tablename - Name of table to create
+	* @param columns - <code>ArrayList</code> of column names to use
+	* @param types - <code>ArrayList</code> of (SQL) types to use, as <code>String</code> objects
+	* @param nulls - <code>ArrayList</code> of <code>Boolean</code> objects specifying whether the corresponding column can be null or not (true = null, false = not null)
+	* @return <code>Connection</code> to DB
+	* @throws SQLException If tablename is invalid or lengths of other parameters are not matching
+	**/
 	public static Connection createTable(Connection c, String tablename, 
 			ArrayList<String> columns, ArrayList<String> types, 
 			ArrayList<Boolean> nulls) throws SQLException {
@@ -39,6 +56,14 @@ public class DatabaseFunctions {
 		return c;
 	}
 	
+	/**
+	* Creates <code>InsertBuilder</code> object to insert values into table
+	* @param c - <code>Connection</code> to DB
+	* @param tablename - Name of table to insert values into
+	* @param values - <code>ArrayList</code> of <code>String</code> objects of values to insert
+	* @return <code>Connection</code> to DB
+	* @throws SQLException If tablename is invalid, length of values list is not matching or if types of values inserting do not match table
+	**/
 	public static Connection insertRecord(Connection c, String tablename,
 			ArrayList<String> values) throws SQLException {
 		
@@ -52,7 +77,16 @@ public class DatabaseFunctions {
 		return c;
 		
 	}
-	
+
+	/**
+	* Creates <code>SelectBuilder</code> object to select values from table
+	* @param c - <code>Connection</code> to DB
+	* @param tablename - Name of table to select values from
+	* @param columns - <code>ArrayList</code> of <code>String</code> objects of columns to select data from
+	* @param conditions - <code>ArrayList</code> of <code>String</code> objects to specify conditions of data to select from table
+	* @return <code>SelectReturn</code> object containing data from query
+	* @throws SQLException If tablename is invalid, columns list is invalid length or conditions list contains invalid condition(s)
+	**/
 	public static SelectReturn selectRecords(Connection c, String tablename,
 			ArrayList<String> columns, ArrayList<String> conditions) throws SQLException {
 		

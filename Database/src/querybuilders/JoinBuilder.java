@@ -12,9 +12,15 @@ public class JoinBuilder extends AbstractBuilder {
 	private String column1;
 	private String column2;
 	
+	/**
+	* Constructor for join statement
+	* @param tablename1 - First table to use in join query
+	* @param tablename2 - Second table to use in join query
+	* @param columns - <code>ArrayList</code> of columns to join
+	* @param type - Type of join statement to used, specified with <code>JoinType enum</code>
+	**/
 	public JoinBuilder(String tablename1, String tablename2,
-			ArrayList<String> columns, JoinType type,
-			String column1, String column2) {
+			ArrayList<String> columns, JoinType type) {
 		
 		super(tablename1, tablename2);
 		

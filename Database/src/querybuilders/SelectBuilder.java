@@ -8,6 +8,12 @@ public class SelectBuilder extends AbstractBuilder {
 	
 	private ArrayList<String> conditions;
 
+	/**
+	* Constructor for building SELECT query statements
+	* @param tablename - Name of table to select data from
+	* @param columns - <code>ArrayList</code> of <code>String</code> objects of names of columns to use
+	* @param conditions - <code>ArrayList</code> of <code>String</code> objects of conditions to use
+	**/
 	public SelectBuilder(String tablename, ArrayList<String> columns, ArrayList<String> conditions) {
 		super(tablename);
 		
@@ -22,6 +28,9 @@ public class SelectBuilder extends AbstractBuilder {
 		this.build();
 	}
 	
+	/**
+	* Constructor for building SELECT query statements when all columns want selecting
+	**/
 	public SelectBuilder(String tablename) {
 		super(tablename);
 		
